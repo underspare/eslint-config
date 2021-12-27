@@ -4,5 +4,24 @@
   "main": "index.js",
   "repository": "git@github.com:underspare/eslint-config.git",
   "author": "shanejix <shanejix@hotmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node scripts/build.ts"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.8",
+    "@types/doctrine": "^0.0.5",
+    "@types/eslint": "^7.28.1",
+    "@types/node": "^17.0.5",
+    "@types/prettier": "^2.4.1",
+    "@types/xml-escape": "^1.1.0",
+    "insert-tag": "^0.1.2",
+    "typescript": "^4.4.4",
+    "doctrine": "^3.0.0",
+    "eslint": "^7.32.0",
+    "prettier": "^2.4.1",
+    "ts-node": "^10.4.0",
+    "xml-escape": "^1.1.0"
+  }
 }
