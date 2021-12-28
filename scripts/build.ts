@@ -4,13 +4,14 @@ import path from 'path';
 import doctrine from 'doctrine';
 import prettier from 'prettier';
 import { ESLint, Linter } from 'eslint';
-const eslintInstance = new ESLint({});
 import insertTag from 'insert-tag';
 import xmlEscape from 'xml-escape';
 
 import { Namespace, NAMESPACES, NAMESPACE_CONFIG, Rule, locale } from '../config';
-
 import '../utils/prism';
+
+const eslintInstance = new ESLint({});
+
 declare const Prism: any;
 
 type RuleMetaMap = {
@@ -106,11 +107,6 @@ class Builder {
     );
   }
 
-
-  /**
-   * 获取插件的 meta 信息
-   * @returns 
-   */
   private getRuleMetaMap() {
     const { rulePrefix, pluginName } = NAMESPACE_CONFIG[this.namespace]
 
@@ -143,8 +139,8 @@ class Builder {
   private async getRuleList() {
     const ruleList = await Promise.all(
       fs
-        .readdirSync(path.resolve(__dirname, '../test', this.namespace))
-        .filter((ruleName) => fs.lstatSync(path.resolve(__dirname, '../test/', this.namespace, ruleName)).isDirectory())
+        .readdirSync(path.resolve(__dirname, '../rules', this.namespace))
+        .filter((ruleName) => fs.lstatSync(path.resolve(__dirname, '../rules/', this.namespace, ruleName)).isDirectory())
         .map((ruleName) => this.getRule(ruleName)),
     );
 
@@ -174,7 +170,7 @@ class Builder {
   }
 
   private getInitialEslintrc() {
-    const initialEslintrcPath = path.resolve(__dirname, `../test/${this.namespace}/.eslintrc.js`);
+    const initialEslintrcPath = path.resolve(__dirname, `../rules/${this.namespace}/.eslintrc.js`);
     if (!fs.existsSync(initialEslintrcPath)) {
       return '';
     }
@@ -182,7 +178,7 @@ class Builder {
   }
 
   private async getRule(ruleName: string) {
-    const filePath = path.resolve(__dirname, '../test', this.namespace, ruleName, '.eslintrc.js');
+    const filePath = path.resolve(__dirname, '../rules', this.namespace, ruleName, '.eslintrc.js');
     const fileModule = require(filePath);
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const fullRuleName = NAMESPACE_CONFIG[this.namespace].rulePrefix + ruleName;
