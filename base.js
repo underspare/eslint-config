@@ -1,4 +1,13 @@
 module.exports = {
+  env: {
+    browser: true,
+    node: true,
+    commonjs: true,
+    es6: true,
+  },
+  // extends: "eslint:recommended",
+  // 以当前目录为根目录，不再向上查找 .eslintrc.js
+  root: true,
   parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 2019,
@@ -16,14 +25,6 @@ module.exports = {
     // 仅允许 import export 语句出现在模块的顶层
     allowImportExportEverywhere: false,
   },
-  env: {
-    browser: true,
-    node: true,
-    commonjs: true,
-    es6: true,
-  },
-  // 以当前目录为根目录，不再向上查找 .eslintrc.js
-  root: true,
   rules: {
     /**
      * setter 必须有对应的 getter，getter 可以没有对应的 setter
