@@ -44,6 +44,9 @@ class Builder {
     this.buildEslintrc();
   }
 
+  /**
+   * 生成 config/rules/{namespace}.json
+   */
   private buildRulesJson() {
     const ruleConfig = this.ruleList.reduce<{
       [key: string]: Rule;
@@ -67,6 +70,9 @@ class Builder {
     );
   }
 
+  /**
+   * 生成config/locale/en-US.json
+   */
   private buildLocaleJson() {
     const current: any = locale['en-US'];
 
@@ -82,6 +88,9 @@ class Builder {
     this.writeWithPrettier(path.resolve(__dirname, '../config/locale/en-US.json'), JSON.stringify(current), 'json');
   }
 
+  /**
+   * 生成 {namespace}.js 规则文件
+   */
   private buildEslintrc() {
     const eslintrcContent = this.initialEslintrcContent
       // 去掉 extends
@@ -107,6 +116,10 @@ class Builder {
     );
   }
 
+  /**
+   * 获取 当前 namespace 的 meta Map 来自 node_modules/eslint/lib/rules
+   * @returns 
+   */
   private getRuleMetaMap() {
     const { rulePrefix, pluginName } = NAMESPACE_CONFIG[this.namespace]
 
@@ -136,6 +149,10 @@ class Builder {
     )
   }
 
+  /**
+   * 获取 rules 目录下 namespace 的自定义规则列表
+   * @returns 
+   */
   private async getRuleList() {
     const ruleList = await Promise.all(
       fs
@@ -147,6 +164,10 @@ class Builder {
     return ruleList;
   }
 
+  /**
+   * 获取 ruleContent : 处理 this.ruleList
+   * @returns 
+   */
   private getRulesContent() {
     return this.ruleList
       .map((rule) => {
@@ -169,6 +190,10 @@ class Builder {
       .join('');
   }
 
+  /**
+   * 获取 rules 目录下某条规则的 eslintrc.js
+   * @returns 
+   */
   private getInitialEslintrc() {
     const initialEslintrcPath = path.resolve(__dirname, `../rules/${this.namespace}/.eslintrc.js`);
     if (!fs.existsSync(initialEslintrcPath)) {
@@ -177,6 +202,11 @@ class Builder {
     return fs.readFileSync(initialEslintrcPath, 'utf-8');
   }
 
+  /**
+   * 获取 rules 目录下 namespace 的自定义规则列表下的单条具体规则
+   * @param ruleName 
+   * @returns 
+   */
   private async getRule(ruleName: string) {
     const filePath = path.resolve(__dirname, '../rules', this.namespace, ruleName, '.eslintrc.js');
     const fileModule = require(filePath);
