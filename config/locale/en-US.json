@@ -1,0 +1,7 @@
+{
+  "setter 必须有对应的 getter，getter 可以没有对应的 setter": "setter 必须有对应的 getter，getter 可以没有对应的 setter",
+  "布尔值类型的 propTypes 的 name 必须为 is 或 has 开头": "布尔值类型的 propTypes 的 name 必须为 is 或 has 开头",
+  "类型相关的约束交给 TypeScript": "类型相关的约束交给 TypeScript",
+  "重载的函数必须写在一起": "重载的函数必须写在一起",
+  "增加可读性": "增加可读性"
+}
