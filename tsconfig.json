@@ -27,9 +27,9 @@
     // 严格模式
     "strict": true,
     // 若有未使用的局部变量则抛错
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     // 若有未使用的参数则抛错
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
 
     // stdout 输出
     //
