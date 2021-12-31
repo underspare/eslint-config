@@ -23,16 +23,33 @@ export default function App() {
             <div
               key={name}
             >
-              name:{name}
-              value:{JSON.stringify(value)}
-              description:{description}
-              reason:{reason}
-              fixable:{fixable}
-              extendsBaseRule:{extendsBaseRule}
-              requiresTypeChecking:{requiresTypeChecking}
+              <hr></hr>
+
+              name:
+              <div>{name}</div>
+
+              value:
+              <div>{JSON.stringify(value)}</div>
+
+              description:
+              <div>{description}</div>
+
+              reason:
+              <div>{reason}</div>
+
+              fixable:
+              <div>{fixable}</div>
+
+              extendsBaseRule:
+              <div>{extendsBaseRule}</div>
+
+              requiresTypeChecking:
+              <div>{requiresTypeChecking}</div>
+
+              badExample:
               {
                 badExample && (
-                  <pre>
+                  <pre className={`language-${NAMESPACE_CONFIG['base'].prismLanguage}`} >
                     <code
                       dangerouslySetInnerHTML={{
                         __html: badExample,
@@ -41,9 +58,11 @@ export default function App() {
                   </pre>
                 )
               }
+
+              goodExample:
               {
                 goodExample && (
-                  <pre>
+                  <pre className={`language-${NAMESPACE_CONFIG['base'].prismLanguage}`}>
                     <code
                       dangerouslySetInnerHTML={{
                         __html: goodExample,
