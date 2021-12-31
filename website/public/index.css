@@ -1,40 +1,19 @@
-code[class*='language-'],
-pre[class*='language-'] {
-  color: #657b83;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
+@import './prism.css';
 
-  line-height: 1.5;
-
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
+/* ESLint */
+.eslint-error {
+  color: inherit;
+  padding: inherit;
+  background-color: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 4'%3E%3Cpath fill='none' stroke='%23ff0000' d='M 0 3.5 c 2 0, 2 -3, 4 -3, s 2 3, 4 3, 2 -3, 4 -3, 2 3, 4 3'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position-y: 100%;
+  background-size: 8px 4px;
+}
+.eslint-error-rule-id {
+  color: #ddd;
 }
 
-/* Code blocks */
-pre[class*='language-'] {
-  padding: 1em;
-  margin: 0.5em 0;
-  overflow: auto;
-  border-radius: 0.3em;
-}
-
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
+.block {
   background-color: #fdf6e3;
-}
-
-/* Inline code */
-:not(pre) > code[class*='language-'] {
-  padding: 0.1em;
-  border-radius: 0.3em;
 }

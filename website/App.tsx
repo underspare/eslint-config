@@ -26,25 +26,25 @@ export default function App() {
               <hr></hr>
 
               name:
-              <div>{name}</div>
+              <div className='block'>{name}</div>
 
               value:
-              <div>{JSON.stringify(value)}</div>
+              <div className='block'>{JSON.stringify(value)}</div>
 
               description:
-              <div>{description}</div>
+              <div className='block'>{description}</div>
 
               reason:
-              <div>{reason}</div>
+              <div className='block'>{reason}</div>
 
               fixable:
-              <div>{fixable}</div>
+              <div className='block'>{fixable}</div>
 
               extendsBaseRule:
-              <div>{extendsBaseRule}</div>
+              <div className='block'>{extendsBaseRule}</div>
 
               requiresTypeChecking:
-              <div>{requiresTypeChecking}</div>
+              <div className='block'>{requiresTypeChecking}</div>
 
               badExample:
               {

@@ -8,7 +8,7 @@ import insertTag from 'insert-tag';
 import xmlEscape from 'xml-escape';
 
 import { Namespace, NAMESPACES, NAMESPACE_CONFIG, Rule, locale } from '../config';
-import '../utils/prism';
+import '../vendor/prism';
 
 const eslintInstance = new ESLint({});
 
