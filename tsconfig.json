@@ -10,7 +10,6 @@
     "jsx": "react",
     // 禁止导入模块时大小写错误
     "forceConsistentCasingInFileNames": true,
-
     // 生成文件的配置
     //
     // 指定生成文件的 ECMAScript 版本
@@ -21,7 +20,6 @@
     "moduleResolution": "node",
     // 生成的文件的换行符
     "newLine": "lf",
-
     // 严格模式，可选择性的开启，建议开启的越多越好
     //
     // 严格模式
@@ -30,11 +28,12 @@
     "noUnusedLocals": false,
     // 若有未使用的参数则抛错
     "noUnusedParameters": false,
-
     // stdout 输出
     //
     // 给错误和消息设置样式，使用颜色和上下文
     "pretty": true
   },
-  "exclude": ["node_modules/**/*"]
+  "include": [
+    "website/**/*"
+  ]
 }
