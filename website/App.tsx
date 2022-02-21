@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown';
 
 import { NAMESPACES, Namespace } from '../config';
 import { RuleTable } from './components/RuleTable';
 import { getLanguage, getQuery, newUrl, replaceUrl, defaultTo, t } from './utils';
 
+//@ts-ignore
+import quikStartMd from '../README.zh-CN.md';
+
 const App: React.SFC = () => {
   const query = getQuery();
-  const [namespace, setNamespace] = useState(defaultTo<Namespace>('quik-start', NAMESPACES[0], NAMESPACES));
+  const [namespace, setNamespace] = useState(defaultTo<Namespace>('quik-start', 'quik-start' as Namespace, NAMESPACES));
   const [hideOff, toggleHideOff] = useState(query.hideOff === '1');
   const language = getLanguage();
 
@@ -28,7 +32,7 @@ const App: React.SFC = () => {
           <span>Eslint 代码规范说明</span>
         </a>
         <nav className='header-nav'>
-          <a
+          {/* <a
             className='nav-item'
             onClick={() => {
               setNamespace('quik-start' as Namespace);
@@ -36,7 +40,7 @@ const App: React.SFC = () => {
             }}
           >
             {'快速上手'}
-          </a>
+          </a> */}
           {NAMESPACES.map((namespace) => (
             <a
               className='nav-item'
@@ -72,12 +76,21 @@ const App: React.SFC = () => {
       </div>
     );
 
+  const QuikStart = () => {
+    return (
+      <ReactMarkdown
+        children={quikStartMd}
+      />
+    )
+  }
+
   return namespace.includes('quik-start')
     ? (
       <>
         {Header}
         {Banner}
-        <>this si quik start</>
+        {/* <>this si quik start</> */}
+        <QuikStart />
       </>
     )
     : (

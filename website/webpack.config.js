@@ -25,6 +25,10 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.md$/,
+        use: "raw-loader"
+      },
     ],
   },
   plugins: [
