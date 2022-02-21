@@ -612,3 +612,54 @@ a.text-primary {
 .text-small {
   font-size: 85%;
 }
+
+.header {
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: white;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  box-sizing: border-box;
+  border: 0px solid rgb(229, 231, 235);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+.header-title {
+  margin-left: 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  color: rgba(6, 78, 59);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.eslint-icon {
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 0 1rem;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  margin-left: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  color: rgba(6, 78, 59);
+  text-transform: capitalize;
+}
