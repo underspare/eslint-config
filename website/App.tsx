@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { cb as dark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import { NAMESPACES, Namespace } from '../config';
 import { RuleTable } from './components/RuleTable';
@@ -80,6 +82,24 @@ const App: React.SFC = () => {
     return (
       <ReactMarkdown
         children={quikStartMd}
+        components={{
+          code({ node, inline, className, children, ...props }) {
+            const match = /language-(\w+)/.exec(className || '')
+            return !inline && match ? (
+              <SyntaxHighlighter
+                children={String(children).replace(/\n$/, '')}
+                style={dark}
+                language={match[1]}
+                PreTag="div"
+                {...props}
+              />
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            )
+          }
+        }}
       />
     )
   }
@@ -90,7 +110,14 @@ const App: React.SFC = () => {
         {Header}
         {Banner}
         {/* <>this si quik start</> */}
-        <QuikStart />
+        <div
+          style={{
+            margin: '0 auto'
+          }}
+          className='container'
+        >
+          <QuikStart />
+        </div>
       </>
     )
     : (

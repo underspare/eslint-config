@@ -619,6 +619,7 @@ a.text-primary {
   top: 0;
   width: 100%;
   background-color: white;
+  z-index: 999;
 }
 
 .header-container {
@@ -628,7 +629,7 @@ a.text-primary {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 0;
+  padding: 1.2rem 0;
   box-sizing: border-box;
   border: 0px solid rgb(229, 231, 235);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
