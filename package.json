@@ -12,7 +12,7 @@
     "dev:copyfiles": "npm run build:copyfiles",
     "dev:webpack-dev-server": "webpack serve --open --config ./website/webpack.config.js",
     "build:copyfiles": "copyfiles -u 2 \"website/public/**/*\" dist/public",
-    "build:website": "webpack --config ./website/webpack.config.js"
+    "build:website": "npm run dev:eslintrc && npm run dev:copyfiles && webpack --config ./website/webpack.config.js"
   },
   "devDependencies": {
     "@types/cookie": "^0.4.1",
