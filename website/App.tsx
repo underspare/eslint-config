@@ -1,80 +1,72 @@
-import React from 'react';
-import { NAMESPACES, NAMESPACE_CONFIG, Namespace, Rule } from '../config';
+import React, { useState, useEffect } from 'react';
+import ReactTooltip from 'react-tooltip';
 
-export default function App() {
+import { NAMESPACES, Namespace } from '../config';
+import { RuleTable } from './components/RuleTable';
+import { getLanguage, getQuery, newUrl, replaceUrl, defaultTo, t } from './utils';
+
+const App: React.SFC = () => {
+  const query = getQuery();
+  const [namespace, setNamespace] = useState(defaultTo<Namespace>(query.rule, NAMESPACES[0], NAMESPACES));
+  const [hideOff, toggleHideOff] = useState(query.hideOff === '1');
+  const language = getLanguage();
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, []);
+
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  }, [namespace]);
+
+  const Header = (
+    <div className="flex-center">
+      <div className="container-fluid">
+        <form className="top-gap site-form">
+          <select
+            value={namespace}
+            onChange={(e) => {
+              setNamespace(e.target.value as Namespace);
+              replaceUrl(newUrl({ query: { rule: e.target.value } }));
+            }}
+          >
+            {NAMESPACES.map((namespace) => (
+              <option key={namespace} value={namespace}>
+                {namespace}
+              </option>
+            ))}
+          </select>
+
+          <label>
+            <input
+              type="checkbox"
+              checked={hideOff}
+              onChange={(e) => {
+                toggleHideOff(e.target.checked);
+                replaceUrl(newUrl({ query: { hideOff: e.target.checked } }));
+              }}
+            />
+            {t('隐藏已禁用的规则')}
+          </label>
+        </form>
+      </div>
+    </div>
+  );
 
   return (
     <>
-      {
-        Object.values<Rule>(NAMESPACE_CONFIG['base'].ruleConfig).map(
-          (
-            {
-              name,
-              value,
-              description,
-              reason,
-              badExample,
-              goodExample,
-              fixable,
-              extendsBaseRule,
-              requiresTypeChecking,
-            }
-          ) => (
-            <div
-              key={name}
-            >
-              <hr></hr>
-
-              name:
-              <div className='block'>{name}</div>
-
-              value:
-              <div className='block'>{JSON.stringify(value)}</div>
-
-              description:
-              <div className='block'>{description}</div>
-
-              reason:
-              <div className='block'>{reason}</div>
-
-              fixable:
-              <div className='block'>{fixable}</div>
-
-              extendsBaseRule:
-              <div className='block'>{extendsBaseRule}</div>
-
-              requiresTypeChecking:
-              <div className='block'>{requiresTypeChecking}</div>
-
-              badExample:
-              {
-                badExample && (
-                  <pre className={`language-${NAMESPACE_CONFIG['base'].prismLanguage}`} >
-                    <code
-                      dangerouslySetInnerHTML={{
-                        __html: badExample,
-                      }}
-                    />
-                  </pre>
-                )
-              }
-
-              goodExample:
-              {
-                goodExample && (
-                  <pre className={`language-${NAMESPACE_CONFIG['base'].prismLanguage}`}>
-                    <code
-                      dangerouslySetInnerHTML={{
-                        __html: goodExample,
-                      }}
-                    />
-                  </pre>
-                )
-              }
-            </div>
-          )
-        )
-      }
+      {Header}
+      <RuleTable namespace={namespace} hideOff={hideOff} />
+      {/* <ReactTooltip
+        className="site-react-tooltip"
+        place="top"
+        type="error"
+        effect="solid"
+        delayHide={100}
+        html={true}
+      /> */}
     </>
   );
-}
+};
+
+export default App;

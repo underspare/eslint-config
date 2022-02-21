@@ -1,4 +1,6 @@
 @import './prism.css';
+@import './cover.css';
+@import './cover-color.css';
 
 /* ESLint */
 .eslint-error {
